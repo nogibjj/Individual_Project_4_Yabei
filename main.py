@@ -10,7 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 
 
-api_token = "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"
+api_token = os.getenv("API_TOKEN")
 if not api_token:
     raise EnvironmentError("API_TOKEN not found. Please set the API_TOKEN environment variable.")
 
