@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Summarizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .enlarged {
+      transform: scale(1.5); /* Increased scale value */
+      transform-origin: top center;
+    }
+    .message {
+      word-wrap: break-word; /* 长单词将在边界处换行 */
+      overflow-wrap: break-word; /* 在长单词或 URL 地址内部进行换行 */
+      margin-bottom: 10px; /* 添加一些边距 */
+      max-width: 90%; /* 设置最大宽度，确保对话框不会太宽 */
+      padding: 10px; /* 增加内边距 */
+      border-radius: 20px; /* 圆角边框 */
+    }
+    .user-input {
+      background-color: #e2e8f0; /* 用户输入的背景色 */
+      color: #1a202c; /* 用户输入的文字颜色 */
+      align-self: flex-end; /* 靠右显示 */
+    }
+    .ai-response {
+      background-color: #fbb6ce; /* AI 回应的背景色 */
+      color: #97266d; /* AI 回应的文字颜色 */
+      align-self: flex-start; /* 靠左显示 */
+    }
+  </style>
+</head>
+<body class="bg-teal-200">
+  <div class="max-w-2xl mx-auto my-10 enlarged">
+    <div class="bg-black rounded-3xl p-8">
+      <div class="flex justify-between items-center mb-6">
+        <div class="flex space-x-2">
+          <div class="w-4 h-4 rounded-full bg-red-500"></div>
+          <div class="w-4 h-4 rounded-full bg-yellow-400"></div>
+          <div class="w-4 h-4 rounded-full bg-green-500"></div>
+        </div>
+        <div class="text-white text-xl font-semibold">
+          Text Summarizer
+        </div>
+        <div class="w-4 h-4 rounded-full bg-gray-300"></div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 mb-5">
+        <div class="flex items-center mb-5">
+          <img alt="AI logo placeholder" class="rounded-full" src="https://placehold.co/60x60/e0e0e0/757575?text=AI&font=source-sans-pro" width="60" height="60">
+          <div class="ml-4 text-base font-medium">
+            Chat box
+          </div>
+        </div>
+        <div class="flex flex-col space-y-3" id="messageContainer">
+          <div class="ai-response message">
+            Hi, what would you like to summarize today?
+          </div>
+          <!-- Messages will be shown here -->
+        </div>
+      </div>
+      <div class="flex items-center bg-pink-600 text-white rounded-full px-5 py-4">
+        <input class="bg-transparent flex-1 outline-none text-base" id="textInput" placeholder="enter your text here" type="text">
+        <button class="text-white text-lg" id="sendButton">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    async function sendMessage() {
+      var textInput = document.getElementById('textInput');
+      var text = textInput.value;
+      textInput.value = '';
+
+      // 显示用户输入的文本
+      var userInputMessage = document.createElement('div');
+      userInputMessage.textContent = text;
+      userInputMessage.className = 'user-input message';
+      var messageContainer = document.getElementById('messageContainer');
+      messageContainer.appendChild(userInputMessage);
+
+      try {
+        let response = await fetch('/summarize', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ text: text }), 
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        let data = await response.json();
+        var summaryMessage = document.createElement('div');
+        summaryMessage.textContent = data.summary || 'No summary provided';
+        summaryMessage.className = 'ai-response message';
+        messageContainer.appendChild(summaryMessage);
+      } catch (error) {
+        console.error('Error:', error);
+        var errorMessage = document.createElement('div');
+        errorMessage.textContent = `Error: ${error.message}`;
+        errorMessage.className = 'ai-response message';
+        messageContainer.appendChild(errorMessage);
+      }
+    };
+
+    document.getElementById('sendButton').addEventListener('click', sendMessage);
+    document.getElementById('textInput').addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>
