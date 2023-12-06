@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 api_token = os.getenv("API_TOKEN")
 if not api_token:
-    raise EnvironmentError("API_TOKEN not found. Please set the API_TOKEN environment variable.")
+    raise EnvironmentError("API_TOKEN not found.")
 
 # 设置 OpenAI API 密钥
 openai.api_key = api_token
@@ -23,15 +23,19 @@ def index():
 
 @app.route("/summarize", methods=["POST"])
 def summarize_text():
-
     try:
         data = request.get_json()
         text_to_summarize = data['text']
 
+        prompt = f"""
+                Summarize the following text, \
+                The summarized text needs to be under 280 tokens: \
+                {text_to_summarize}
+                """
 
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt=f"Summarize the following text,The summarized text needs to be under 280 tokens: {text_to_summarize}",
+            prompt=prompt,
             max_tokens=300
         )
 
