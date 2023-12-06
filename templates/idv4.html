@@ -11,26 +11,26 @@
       font-family: 'Inter', sans-serif;
     }
     .enlarged {
-      transform: scale(1.5); /* Increased scale value */
+      transform: scale(1.5); 
       transform-origin: top center;
     }
     .message {
-      word-wrap: break-word; /* 长单词将在边界处换行 */
-      overflow-wrap: break-word; /* 在长单词或 URL 地址内部进行换行 */
-      margin-bottom: 10px; /* 添加一些边距 */
-      max-width: 90%; /* 设置最大宽度，确保对话框不会太宽 */
-      padding: 10px; /* 增加内边距 */
-      border-radius: 20px; /* 圆角边框 */
+      word-wrap: break-word; 
+      overflow-wrap: break-word; 
+      margin-bottom: 10px; 
+      max-width: 90%; 
+      padding: 10px; 
+      border-radius: 20px; 
     }
     .user-input {
-      background-color: #e2e8f0; /* 用户输入的背景色 */
-      color: #1a202c; /* 用户输入的文字颜色 */
-      align-self: flex-end; /* 靠右显示 */
+      background-color: #e2e8f0;
+      color: #1a202c; 
+      align-self: flex-end; 
     }
     .ai-response {
-      background-color: #fbb6ce; /* AI 回应的背景色 */
-      color: #97266d; /* AI 回应的文字颜色 */
-      align-self: flex-start; /* 靠左显示 */
+      background-color: #fbb6ce; 
+      color: #97266d; 
+      align-self: flex-start; 
     }
   </style>
 </head>
@@ -76,7 +76,7 @@
       var text = textInput.value;
       textInput.value = '';
 
-      // 显示用户输入的文本
+      
       var userInputMessage = document.createElement('div');
       userInputMessage.textContent = text;
       userInputMessage.className = 'user-input message';
