@@ -1,8 +1,7 @@
 [![CI](https://github.com/nogibjj/Individual_Project_4_Yabei/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/Individual_Project_4_Yabei/actions/workflows/cicd.yml)
 # Project Title
 
-*Place for App Link:* [[Your App Link Here](https://textsummary.gentlesand-bceecd4f.westus2.azurecontainerapps.io/)]
-
+*App Link:* [Text Summarizer App](https://textsummary.gentlesand-bceecd4f.westus2.azurecontainerapps.io/)
 *Place for Video Link:* [Your Video Link Here]
 
 ## Overview
@@ -38,6 +37,7 @@ The Dockerfile is structured as follows:
 The application is designed to be deployed as a container on Azure, utilizing Azure's capabilities for scalability and reliability.
 ![e25150d04bebd4e3c5ef763b676c5ce](https://github.com/nogibjj/Individual_Project_4_Yabei/assets/143656459/f9716075-624a-411a-aa1c-55b97f3245cc)
 ![6a2ac2826cc770bcecef9d534028bd1](https://github.com/nogibjj/Individual_Project_4_Yabei/assets/143656459/91a37725-092a-4d59-ac42-9134cd2978a8)
+![3e78b3b408d741bb6981db3ae0e7bad](https://github.com/nogibjj/Individual_Project_4_Yabei/assets/143656459/f07b2571-f9af-4b39-89a1-0bd2e6ad48ac)
 
 
 ## Preparation and Deployment
