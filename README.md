@@ -3,7 +3,7 @@
 
 *App Link:* [Text Summarizer App](https://textsummary.gentlesand-bceecd4f.westus2.azurecontainerapps.io/)
 
-*Video Link:* [Youtube Link]()
+*Video Link:* [Youtube Link](https://youtu.be/hO48AlK0zy8)
 
 ## Overview
 
