@@ -2,7 +2,8 @@
 # Project Title
 
 *App Link:* [Text Summarizer App](https://textsummary.gentlesand-bceecd4f.westus2.azurecontainerapps.io/)
-*Place for Video Link:* [Your Video Link Here]
+
+*Video Link:* [Youtube Link]()
 
 ## Overview
 
